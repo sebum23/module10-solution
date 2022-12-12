@@ -1,0 +1,67 @@
+<div class="container">
+  <h2 class="text-center">Sign up for newsletter</h2>
+  <form name="signup" ng-controller="SignUpController as signupCtrl">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" class="form-control" name="firstName" placeholder="Enter first name" 
+        ng-model="signupCtrl.firstName"
+        required
+        maxlength="20">
+      <div class="invalid-feedback" ng-if="signup.firstName.$error.required
+      && signup.firstName.$touched">
+        Please enter first name
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" class="form-control" name="lastName" placeholder="Enter last name"
+      ng-model="signupCtrl.lastName"
+      required>
+      <div class="invalid-feedback" ng-if="signup.lastName.$error.required
+        && signup.lastName.$touched">
+          Please enter last name
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" name="email" placeholder="Enter email"
+      ng-model="signupCtrl.email"
+      required>
+      <div class="invalid-feedback" ng-if="signup.email.$error.required
+        && signup.email.$touched">
+          Please enter email
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="phoneNum">Phone Number</label>
+      <input type="text" class="form-control" name="phoneNum" placeholder="Enter phone number"
+      ng-model="signupCtrl.phoneNum"
+      required>
+      <div class="invalid-feedback" ng-if="signup.phoneNum.$error.required
+        && signup.phoneNum.$touched">
+          Please enter phone number
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="favoriteMenu">Favorite menu item</label>
+      <input type="text" class="form-control" name="favoriteMenu" placeholder="Enter your favorite menu item"
+      ng-model="signupCtrl.favoriteMenu"
+      ng-change="signupCtrl.validateFavMenuItem()"
+      required>
+      <div class="invalid-feedback" ng-if="signup.favoriteMenu.$error.required
+        && signup.favoriteMenu.$touched">
+          Please enter your favorite menu item
+      </div>
+      <div class="invalid-feedback" ng-if="!signupCtrl.isMenuItemValid">
+        No such menu number exists
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" 
+    ng-click="signupCtrl.signup()"
+    ng-disabled="signup.firstName.$invalid || signup.lastName.$invalid || signup.email.$invalid || signup.phoneNum.$invalid || !signupCtrl.validateMenuItemForm()"
+    >Submit</button> 
+    <div ng-if="signupCtrl.isRegistered">
+      Your information has been saved
+    </div>
+  </form>
+</div>
